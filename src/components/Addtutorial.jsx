@@ -1,19 +1,36 @@
+import { useState } from "react";
 
+const Addtutorial = ({postTutorials}) => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
-const Addtutorial = () => {
+  const handleSubmit = (e) => {
+    e.preventDefoult();
+    setDesc("");
+    setTitle("");
+    postTutorials({title:title, description:desc});
+  }
   return (
     <div>
         <h1>Add Your Tutorial</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
 
  
     <div className="title">
-      <label for="disabledTextInput" className="form-labe">Title</label> <br />
-      <input type="text" id="disabledTextInput" className="form-control" placeholder="Disabled input"/>
+      <label htmlFor="title" 
+      className="form-labe">Title</label> <br />
+      <input type="text" 
+      id="title" 
+      className="form-control" 
+      placeholder="Disabled input"/>
     </div>
     <div className="mb-3 desc">
-      <label for="disabledTextInput" className="form-label">Description</label> <br />
-      <input type="text" id="disabledTextInput" className="form-control" placeholder="Disabled input"/>
+      <label htmlFor="desc" 
+      className="form-label">Description</label> <br />
+      <input type="text" 
+      id="desc" 
+      className="form-control" 
+      placeholder="Disabled input"/>
     </div>
     
     

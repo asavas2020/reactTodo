@@ -9,21 +9,57 @@ const Home = () => {
     const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
 
     const getTutorials = async ()=>{
-        const {data} = await axios.get(url);
+        try {
+            const {data} = await axios.get(url);
         setTutorials(data);
         // console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
+    const postTutorials = async (tutorial) => {
+      try {
+        await axios.post(url, tutorial);
+      } catch (error) {
+        console.log(error);
+      }
+      getTutorials();
+    }
+
+    const deleteTutorials = async(id) =>{
+      try {
+        await axios.delete(`${url}/${id}`);
+      } catch (error) {
+        console.log(error);
+      }
+      getTutorials();
+    }
+
+    const editTutorials = async (id, title, desc)=>{
+      
+        const filtered = tutorials.filter((tutor) => tutor.id ===id).Map(()=>({title:title, description:desc}));
+        // console.log(filtered[0]);
+      try {
+        await axios.put(`${url}/${id}`, filtered[0]);
+
+      } catch (error) {
+        console.log(error);
+      }
+      getTutorials();
     }
 
     useEffect(() => {
       getTutorials();    
     }, [])
-    console.log(tutorials);
+    // console.log(tutorials);
 
     // getTutorials()
   return (
     <div>
-        <Addtutorial/>
-        <TutorialList/>
+        <Addtutorial postTutorials={postTutorials}/>
+        <TutorialList tutorials={tutorials} deleteTutorials={deleteTutorials} editTutorials={editTutorials}/>
     </div>
   )
 }
