@@ -11,33 +11,42 @@ const Addtutorial = ({postTutorials}) => {
     postTutorials({title:title, description:desc});
   }
   return (
-    <div>
-        <h1>Add Your Tutorial</h1>
-        <form onSubmit={handleSubmit}>
-
- 
-    <div className="title">
-      <label htmlFor="title" 
-      className="form-labe">Title</label> <br />
-      <input type="text" 
-      id="title" 
-      className="form-control" 
-      placeholder="Disabled input"/>
+    <div className="container text-center mt-4">
+      <h1 className="display-6 text-danger">Add Your Tutorial</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="title" 
+          className="form-labe">Title
+          </label>
+          <input 
+          type="text" 
+          id="title" 
+          className="form-control" 
+          placeholder="Enter..."
+          value = {title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+      />
     </div>
-    <div className="mb-3 desc">
+    <div className="mb-3">
       <label htmlFor="desc" 
-      className="form-label">Description</label> <br />
-      <input type="text" 
+      className="form-label">Description</label>
+      <input 
+      type="text" 
       id="desc" 
       className="form-control" 
-      placeholder="Disabled input"/>
+      placeholder="Enter..."
+      value = {desc}
+      onChange={(e) => setDesc(e.target.value)}
+      required
+      />
     </div>
     
     
-    <button type="submit" className="btn btn-warning">Submit</button>
+    <button className="btn btn-warning mb-4">Submit</button>
  
-</form>
-    </div>
+  </form>
+  </div>
   )
 }
 

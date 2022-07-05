@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const Home = () => {
     const [tutorials, setTutorials] = useState()
 
-    const url = "https://axios-example-cw.herokuapp.com/api/tutorials";
+    const url = 'https://tutorials-api-cw.herokuapp.com/api/tutorials';
 
     const getTutorials = async ()=>{
         try {
@@ -18,6 +18,10 @@ const Home = () => {
         }
         
     }
+    useEffect(() => {
+      getTutorials();    
+    }, [])
+    // console.log(tutorials);
 
     const postTutorials = async (tutorial) => {
       try {
@@ -50,16 +54,15 @@ const Home = () => {
       getTutorials();
     }
 
-    useEffect(() => {
-      getTutorials();    
-    }, [])
-    // console.log(tutorials);
-
-    // getTutorials()
+    
+    
   return (
     <div>
         <Addtutorial postTutorials={postTutorials}/>
-        <TutorialList tutorials={tutorials} deleteTutorials={deleteTutorials} editTutorials={editTutorials}/>
+        <TutorialList 
+        tutorials={tutorials} 
+        deleteTutorials={deleteTutorials} 
+        editTutorials={editTutorials}/>
     </div>
   )
 }

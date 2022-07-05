@@ -24,7 +24,7 @@ const TutorialList = ({tutorials, deleteTutorials, editTutorials}) => {
                 <th>{id}</th>
                 <td>{title}</td>
                 <td>{description}</td>
-                <td className="text-center">
+                <td className="text-center text-nowrap">
                   <FaEdit
                     data-bs-toggle="modal"
                     data-bs-target="#edit-modal"
